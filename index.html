@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Potato Test — Support &amp; Privacy</title>
+<meta name="description" content="Support and privacy policy for Potato Test, a pixel-art iOS quiz app that answers the important question: are you a potato?">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="potato.png">
+<link rel="apple-touch-icon" href="potato.png">
+<meta property="og:title" content="Potato Test — Support &amp; Privacy">
+<meta property="og:description" content="Support and privacy policy for Potato Test.">
+<meta property="og:image" content="potato.png">
+<meta property="og:type" content="website">
+
+<style>
+  /* ---- palette: lifted from PotatoTest/Theme.swift ---- */
+  :root {
+    --bg:        #FBEFCF;
+    --panel:     #FFF8E4;
+    --ink:       #46311F;
+    --ink-soft:  #7A5B3E;
+    --outline:   #5B3A1E;
+    --rule:      #E0CDA4;
+    --potato:    #E2A963;
+    --yes:       #7AB030;
+    --no:        #D2523E;
+    --gold:      #F8C02C;
+    --sky:       #4E8FD9;
+    --shadow:    #5B3A1E;
+    --scanline:  rgba(91, 58, 30, .045);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:       #23180F;
+      --panel:    #322317;
+      --ink:      #FBEFCF;
+      --ink-soft: #C6AC85;
+      --outline:  #8A5F35;
+      --rule:     #4A3620;
+      --shadow:   #150D07;
+      --scanline: rgba(0, 0, 0, .16);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:       #23180F;
+    --panel:    #322317;
+    --ink:      #FBEFCF;
+    --ink-soft: #C6AC85;
+    --outline:  #8A5F35;
+    --rule:     #4A3620;
+    --shadow:   #150D07;
+    --scanline: rgba(0, 0, 0, .16);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 0 20px 72px;
+  }
+
+  /* CRT scanlines, same trick the app uses */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--scanline) 0 2px,
+      transparent 2px 4px
+    );
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  /* ---- retro type ---- */
+  .mono, h1, h2, h3, nav button, .tag, .pill, summary, th, footer {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+
+  a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+  a:hover { text-decoration-color: var(--potato); }
+
+  /* ---- header ---- */
+  header { text-align: center; padding: 48px 0 28px; }
+
+  .icon {
+    width: 112px; height: 112px;
+    display: block; margin: 0 auto 20px;
+    image-rendering: pixelated;
+    border: 4px solid var(--outline);
+    box-shadow: 8px 8px 0 var(--shadow);
+    background: #FBEFCF;
+  }
+
+  h1 { font-size: clamp(28px, 7vw, 42px); margin: 0 0 8px; line-height: 1.1; }
+
+  .tagline {
+    margin: 0 auto;
+    max-width: 30ch;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+
+  /* ---- tabs ---- */
+  nav {
+    display: flex; gap: 12px; justify-content: center;
+    margin: 32px 0 40px; flex-wrap: wrap;
+  }
+
+  nav button {
+    appearance: none;
+    font-size: 14px; font-weight: 700;
+    padding: 13px 26px;
+    color: var(--ink);
+    background: var(--panel);
+    border: 3px solid var(--outline);
+    box-shadow: 5px 5px 0 var(--shadow);
+    cursor: pointer;
+    transition: transform .06s, box-shadow .06s, background .12s;
+  }
+  nav button:hover { background: var(--potato); color: #46311F; }
+  nav button:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--shadow); }
+  nav button[aria-selected="true"] {
+    background: var(--potato); color: #46311F;
+    transform: translate(5px, 5px); box-shadow: 0 0 0 var(--shadow);
+  }
+  nav button:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+
+  /* ---- cards ---- */
+  section > h2 {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 44px 0 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  section > h2::after {
+    content: ""; flex: 1; height: 3px; background: var(--rule);
+  }
+  section > h2:first-child { margin-top: 0; }
+
+  .card {
+    background: var(--panel);
+    border: 3px solid var(--outline);
+    padding: 22px 24px;
+    margin: 0 0 16px;
+  }
+  .card > :first-child { margin-top: 0; }
+  .card > :last-child  { margin-bottom: 0; }
+
+  .card h3 { font-size: 15px; margin: 0 0 10px; }
+
+  .lede { font-size: 17px; }
+
+  /* highlight card */
+  .card.hero {
+    border-width: 3px;
+    box-shadow: 7px 7px 0 var(--shadow);
+  }
+  .card.hero h3 { color: var(--yes); }
+
+  p { margin: 0 0 12px; }
+  ul { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 7px; }
+
+  code {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .86em;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    padding: 1px 6px;
+    white-space: nowrap;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px;
+    border: 2px solid var(--outline);
+    background: var(--gold);
+    color: #46311F;
+    margin-bottom: 12px;
+  }
+  .tag.free { background: var(--yes); color: #fff; }
+
+  /* ---- FAQ accordions ---- */
+  details {
+    background: var(--panel);
+    border: 3px solid var(--outline);
+    margin-bottom: 10px;
+  }
+  summary {
+    font-size: 14px; font-weight: 700;
+    padding: 16px 48px 16px 20px;
+    cursor: pointer;
+    position: relative;
+    list-style: none;
+    line-height: 1.45;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    position: absolute; right: 18px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px; font-weight: 700;
+    color: var(--potato);
+  }
+  details[open] summary::after { content: "–"; }
+  details[open] summary { border-bottom: 3px solid var(--rule); }
+  summary:hover { background: var(--bg); }
+  summary:focus-visible { outline: 3px solid var(--sky); outline-offset: -3px; }
+  .answer { padding: 18px 20px 4px; }
+  .answer > :last-child { margin-bottom: 14px; }
+
+  /* ---- table ---- */
+  .scroller { overflow-x: auto; margin-bottom: 16px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--panel);
+    border: 3px solid var(--outline);
+    font-size: 14.5px;
+    min-width: 460px;
+  }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 2px solid var(--rule); vertical-align: top; }
+  th { font-size: 11px; background: var(--bg); border-bottom-width: 3px; }
+  tr:last-child td { border-bottom: none; }
+  td code { white-space: nowrap; }
+
+  /* ---- contact ---- */
+  .contact {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
+    background: var(--panel);
+    border: 3px solid var(--outline);
+    box-shadow: 7px 7px 0 var(--shadow);
+    padding: 24px;
+  }
+  .contact .mono { font-size: 12px; color: var(--ink-soft); margin: 0 0 4px; }
+  .contact a.email {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: clamp(15px, 4vw, 19px);
+    font-weight: 700;
+    word-break: break-all;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 3px solid var(--rule);
+  }
+  footer p { margin: 0 0 6px; }
+
+  [hidden] { display: none !important; }
+
+  @media (max-width: 520px) {
+    body { padding: 0 14px 56px; }
+    header { padding: 32px 0 20px; }
+    .card, .contact { padding: 18px; }
+    nav button { flex: 1; padding: 13px 12px; }
+  }
+
+  @media print {
+    body::before, nav, .contact { display: none; }
+    body { background: #fff; color: #000; padding: 0; }
+    .card, details, table { border: 1px solid #999; box-shadow: none; }
+    details > .answer { display: block !important; }
+    [hidden] { display: block !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img class="icon" src="potato.png" alt="The Potato Test app icon: a smiling pixel-art potato" width="112" height="112">
+    <h1>Potato Test</h1>
+    <p class="tagline">Are you a potato? Five questions. One verdict. No appeals.</p>
+  </header>
+
+  <nav role="tablist" aria-label="Sections">
+    <button role="tab" id="tab-support" aria-controls="support" aria-selected="true"  data-view="support">Support</button>
+    <button role="tab" id="tab-privacy" aria-controls="privacy" aria-selected="false" data-view="privacy">Privacy</button>
+  </nav>
+
+  <!-- ================= SUPPORT ================= -->
+  <main>
+  <section id="support" role="tabpanel" aria-labelledby="tab-support">
+
+    <div class="card hero">
+      <h3>Need a hand?</h3>
+      <p class="lede">Most answers are below. If yours isn't, email us — a real person reads it, usually within two business days.</p>
+    </div>
+
+    <h2>Common questions</h2>
+
+    <details open>
+      <summary>How many tests do I get?</summary>
+      <div class="answer">
+        <p><strong>Two free tests a day.</strong> The count resets at midnight, on your phone's own clock. A two-player match counts as one test, not two.</p>
+        <p><span class="tag free">Always free</span></p>
+        <p><strong>Hot Potato is unlimited and free, forever.</strong> The daily limit exists to meter the verdict, and a survival mode you can only play twice a day isn't one.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What is Spud Unlimited?</summary>
+      <div class="answer">
+        <p>A one-time purchase of <strong>A$1.99</strong> that removes the daily limit for good. It is not a subscription — you pay once, on one Apple Account, and it stays unlocked.</p>
+        <p>Prices in other countries are set by Apple's regional pricing and may differ.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>I bought Spud Unlimited but it's locked again</summary>
+      <div class="answer">
+        <p>This is almost always a new device, a reinstall, or a different Apple Account. To fix it:</p>
+        <ul>
+          <li>Play until the paywall appears (or run out of today's tests).</li>
+          <li>Tap <strong>Restore Purchases</strong>.</li>
+          <li>Make sure you're signed in to the <em>same Apple Account</em> that made the purchase — check in Settings → your name → Media &amp; Purchases.</li>
+        </ul>
+        <p>Restoring needs a network connection. If it still won't unlock, email us with the date of purchase and we'll sort it out.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Can I get a refund?</summary>
+      <div class="answer">
+        <p>Refunds are handled by Apple, not by us — we never see your payment details and can't issue one directly. Request one at <a href="https://reportaproblem.apple.com" rel="noopener">reportaproblem.apple.com</a>.</p>
+        <p>If something in the app is genuinely broken, tell us anyway so we can fix it.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I unlock the crowned app icon?</summary>
+      <div class="answer">
+        <p>Score a clean <strong>100%</strong> on the solo test. You'll be offered the crowned icon just after the fanfare, and from then on a crown button sits next to the speaker on the menu so you can switch back and forth whenever you like.</p>
+        <p>Only the solo test counts. In pass-the-phone there's no telling whose phone it is.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Why does iOS say "You have changed the icon for Potato Test"?</summary>
+      <div class="answer">
+        <p>That alert comes from iOS itself, and it appears on every icon change in every app. There is no public API that lets a developer suppress it. Sorry — we find it annoying too.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>There's no sound</summary>
+      <div class="answer">
+        <ul>
+          <li>Check the <strong>speaker icon</strong> in the corner of the start screen — it mutes and unmutes the app.</li>
+          <li>Check your phone's <strong>Silent switch</strong> (or Focus modes) and the volume rocker.</li>
+          <li>All the audio is generated live as square-wave chiptune, so if another app has grabbed the audio session, closing it and reopening Potato Test usually clears it.</li>
+        </ul>
+        <p>Haptics follow your system setting: Settings → Sounds &amp; Haptics → System Haptics.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How does two-player mode work?</summary>
+      <div class="answer">
+        <p>One phone, passed between two people. Both players answer <strong>the same five questions</strong> in turn, because "who is more potato" only means something if the test was identical.</p>
+        <p>Nothing is revealed mid-match on purpose — no running score, no feedback, and the same neutral sound whichever way you answer. It all lands at the end: both scores, the verdict, a crown for whoever is more potato, and a taunt sized to the gap.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What are the Hot Potato rules?</summary>
+      <div class="answer">
+        <p>Questions arrive one at a time on a clock that starts at <strong>4 seconds</strong> and loses <strong>0.16s</strong> every round, down to a floor of 1.25s. Answering the potato-like way hands back <strong>0.4s</strong> — being a potato is finally worth something mechanically.</p>
+        <p>Hold it too long and it goes off. Your best run is saved on your device.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>My scores and best run disappeared</summary>
+      <div class="answer">
+        <p>Everything the app remembers is stored on your device only — there's no account and no cloud sync. Deleting the app (or "Offload App" followed by a reinstall in some cases) clears your Hot Potato best, your daily count and the crowned icon.</p>
+        <p>The one thing that <em>does</em> survive is Spud Unlimited: it's tied to your Apple Account, so <strong>Restore Purchases</strong> will bring it back.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Am I actually a potato?</summary>
+      <div class="answer">
+        <p>Potato Test is a joke. It is entertainment, not a medical, psychological, botanical or agricultural diagnosis, and its verdicts have no standing in any jurisdiction we're aware of.</p>
+        <p>If it says you're a potato, that's between you and the potato.</p>
+      </div>
+    </details>
+
+    <h2>Contact</h2>
+
+    <div class="contact">
+      <img src="potato-crowned.png" alt="" width="56" height="56" style="image-rendering:pixelated;border:3px solid var(--outline);background:#FBEFCF" aria-hidden="true">
+      <div>
+        <p class="mono">Support &amp; privacy enquiries</p>
+        <a class="email" href="mailto:app.bolling@gmail.com?subject=Potato%20Test%20support">app.bolling@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <p style="margin-bottom:0"><strong>To help us help you</strong>, include your iPhone model, your iOS version, and what happened just before the problem. Screenshots are gratefully received.</p>
+    </div>
+
+    <h2>App details</h2>
+
+    <div class="scroller">
+      <table>
+        <tr><th scope="row">App</th><td>Potato Test</td></tr>
+        <tr><th scope="row">Developer</th><td>Spud Labs</td></tr>
+        <tr><th scope="row">Requires</th><td>iPhone running iOS 17.0 or later</td></tr>
+        <tr><th scope="row">In-app purchase</th><td>Spud Unlimited — A$1.99, one-time, non-consumable</td></tr>
+        <tr><th scope="row">Ads</th><td>None</td></tr>
+        <tr><th scope="row">Account required</th><td>None</td></tr>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- ================= PRIVACY ================= -->
+  <section id="privacy" role="tabpanel" aria-labelledby="tab-privacy" hidden>
+
+    <div class="card hero">
+      <h3>The short version</h3>
+      <p class="lede">Potato Test collects nothing about you. There is no account, no analytics, no advertising, no tracking, and no server of ours for your data to travel to. Everything the app remembers stays on your iPhone.</p>
+    </div>
+
+    <p class="mono" style="font-size:12px;color:var(--ink-soft)">Effective 14 August 2026 · Version 1.0</p>
+
+    <h2>What we collect</h2>
+
+    <div class="card">
+      <p><strong>Nothing.</strong> We do not collect, receive, store, sell or share any personal information. Specifically, Potato Test does not gather:</p>
+      <ul>
+        <li>your name, email address, phone number or any contact details;</li>
+        <li>your location;</li>
+        <li>your contacts, photos, microphone, camera or health data;</li>
+        <li>device identifiers, advertising identifiers (IDFA) or fingerprinting signals;</li>
+        <li>analytics, crash reports, usage statistics or behavioural data;</li>
+        <li>your answers, scores or verdicts.</li>
+      </ul>
+      <p style="margin-bottom:0">Because we collect no identifiers at all, the app does not track you across other apps or websites and never asks for App Tracking Transparency permission.</p>
+    </div>
+
+    <h2>What's stored on your device</h2>
+
+    <div class="card">
+      <p>So the app can remember your settings and progress between launches, it saves a handful of small values in iOS's standard local preference store. None of it leaves your iPhone, and none of it identifies you.</p>
+    </div>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th scope="col">What</th><th scope="col">Why</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tests used today, and today's date<br><code>potato.testsUsedToday</code> <code>potato.lastTestDay</code></td>
+            <td>Enforces the two-free-tests-a-day limit and resets it at midnight.</td>
+          </tr>
+          <tr>
+            <td>Best Hot Potato run<br><code>potato.hotPotatoBest</code></td>
+            <td>Shows the number to beat on the game over screen.</td>
+          </tr>
+          <tr>
+            <td>Crowned icon earned<br><code>potato.crownedIconUnlocked</code></td>
+            <td>Remembers that you scored 100%, so the crown button stays available.</td>
+          </tr>
+          <tr>
+            <td>Sound on or off<br><code>potato.soundEnabled</code></td>
+            <td>Keeps the speaker toggle where you left it.</td>
+          </tr>
+          <tr>
+            <td>Spud Unlimited unlocked<br><code>potato.unlimitedCache</code></td>
+            <td>A yes/no flag so your purchase still applies when you're offline.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <p style="margin-bottom:0"><strong>Deleting the app deletes all of it.</strong> There is nothing for us to erase on our end, because we never had a copy.</p>
+    </div>
+
+    <h2>Purchases</h2>
+
+    <div class="card">
+      <p>Spud Unlimited is sold through Apple's In-App Purchase system using StoreKit. When you buy or restore it, your iPhone talks to <strong>Apple</strong>, not to us.</p>
+      <p>We never see and never receive your payment card, billing address, Apple Account email or any other purchase detail. All we get back is a receipt confirming that the purchase exists, which the app checks on your device to decide whether to unlock unlimited tests.</p>
+      <p style="margin-bottom:0">Apple's handling of that transaction is governed by <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple's Privacy Policy</a>.</p>
+    </div>
+
+    <h2>Network activity</h2>
+
+    <div class="card">
+      <p style="margin-bottom:0">The only network connection Potato Test ever makes is to Apple's App Store servers, and only when you buy or restore Spud Unlimited. There are no other requests: no analytics endpoints, no ad networks, no third-party SDKs, no remote configuration, and no servers operated by us. The questions, the scoring, the sound and the artwork are all bundled inside the app.</p>
+    </div>
+
+    <h2>Third parties</h2>
+
+    <div class="card">
+      <p style="margin-bottom:0">Potato Test contains no third-party analytics, advertising, attribution or social media SDKs. Apple is the only third party involved, and only as the payment processor described above. We do not sell or share personal information, because we do not have any.</p>
+    </div>
+
+    <h2>Children</h2>
+
+    <div class="card">
+      <p style="margin-bottom:0">Potato Test is suitable for all ages and collects no personal information from anyone, including children under 13. Since nothing is collected, there is nothing for a parent or guardian to review, correct or request the deletion of. Parents can manage or disable in-app purchases at any time with iOS Screen Time restrictions.</p>
+    </div>
+
+    <h2>Your rights</h2>
+
+    <div class="card">
+      <p>Privacy laws such as the GDPR, the CCPA and the Australian Privacy Act give you rights to access, correct, port or delete the personal information a company holds about you.</p>
+      <p style="margin-bottom:0">We hold none, so there is nothing to hand over or delete. The data on your device is entirely under your control: delete the app and it is gone. You are welcome to email us to confirm this, and we'll happily confirm it.</p>
+    </div>
+
+    <h2>Changes to this policy</h2>
+
+    <div class="card">
+      <p style="margin-bottom:0">If the app ever changes in a way that affects this policy, we'll update this page and move the effective date at the top. Material changes will also be noted in the App Store release notes. Continuing to use the app after an update means you accept the revised policy.</p>
+    </div>
+
+    <h2>Contact</h2>
+
+    <div class="contact">
+      <img src="potato.png" alt="" width="56" height="56" style="image-rendering:pixelated;border:3px solid var(--outline);background:#FBEFCF" aria-hidden="true">
+      <div>
+        <p class="mono">Privacy questions</p>
+        <a class="email" href="mailto:app.bolling@gmail.com?subject=Potato%20Test%20privacy">app.bolling@gmail.com</a>
+      </div>
+    </div>
+
+  </section>
+  </main>
+
+  <footer>
+    <p>Potato Test · Spud Labs</p>
+    <p>This app is a joke. The privacy policy is not.</p>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var tabs  = Array.prototype.slice.call(document.querySelectorAll('nav button'));
+    var views = { support: document.getElementById('support'),
+                  privacy: document.getElementById('privacy') };
+
+    function show(name, push) {
+      if (!views[name]) name = 'support';
+      Object.keys(views).forEach(function (k) { views[k].hidden = (k !== name); });
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t.dataset.view === name)); });
+      document.title = (name === 'privacy' ? 'Privacy Policy' : 'Support') + ' — Potato Test';
+      if (push && location.hash !== '#' + name) history.pushState(null, '', '#' + name);
+    }
+
+    function fromHash() { show((location.hash || '').replace('#', '') || 'support', false); }
+
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        show(t.dataset.view, true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    window.addEventListener('popstate', fromHash);
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
+  })();
+</script>
+</body>
+</html>

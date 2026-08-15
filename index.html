@@ -183,17 +183,6 @@
     white-space: nowrap;
   }
 
-  .tag {
-    display: inline-block;
-    font-size: 11px; font-weight: 700;
-    padding: 4px 10px;
-    border: 2px solid var(--outline);
-    background: var(--gold);
-    color: #46311F;
-    margin-bottom: 12px;
-  }
-  .tag.free { background: var(--yes); color: #fff; }
-
   /* ---- FAQ accordions ---- */
   details {
     background: var(--panel);
@@ -310,9 +299,8 @@
     <details open>
       <summary>How many tests do I get?</summary>
       <div class="answer">
-        <p><strong>Two free tests a day.</strong> The count resets at midnight, on your phone's own clock. A two-player match counts as one test, not two.</p>
-        <p><span class="tag free">Always free</span></p>
-        <p><strong>Hot Potato is unlimited and free, forever.</strong> The daily limit exists to meter the verdict, and a survival mode you can only play twice a day isn't one.</p>
+        <p><strong>Three free tests a day.</strong> The count resets at midnight, on your phone's own clock. A two-player match counts as one test, not two.</p>
+        <p><strong>All three modes share the same pool.</strong> A solo test, a two-player match and a Hot Potato run each cost one of your three. Restarting Hot Potato from the game over screen costs one as well.</p>
       </div>
     </details>
 
@@ -472,7 +460,7 @@
         <tbody>
           <tr>
             <td>Tests used today, and today's date<br><code>potato.testsUsedToday</code> <code>potato.lastTestDay</code></td>
-            <td>Enforces the two-free-tests-a-day limit and resets it at midnight.</td>
+            <td>Enforces the three-free-tests-a-day limit and resets it at midnight.</td>
           </tr>
           <tr>
             <td>Best Hot Potato run<br><code>potato.hotPotatoBest</code></td>
